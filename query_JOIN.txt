@@ -78,8 +78,21 @@ per ogni esame, stampando anche il voto massimo. Successivamente,
 filtrare i tentativi con voto minimo 18.
 
 ( DA RIVEDERE )
-   SELECT COUNT(students.id), exam_student.exam_id
+   SELECT students.name, students.surname, exam_student.exam_id, COUNT(*)
     FROM students
         JOIN exam_student 
             ON exam_student.student_id = students.id
+    WHERE exam_student.voto >= 18
     GROUP BY exam_student.exam_id;
+
+
+    SELECT students.name, students.surname, exam_student.exam_id, COUNT(*)
+    FROM students
+        JOIN exam_student 
+            ON exam_student.student_id = students.id
+        JOIN exam 
+            ON exam_student.exam_id = exams.id
+        JOIN courses 
+            ON exam.couse_id = courses.id
+    WHERE exam_student.voto >= 18
+    GROUP BY studen.id, course.id
